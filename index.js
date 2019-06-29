@@ -72,7 +72,7 @@ var commands = {
   ping: {
     aliases: [],
     run: (message) => {
-      message.channel.send("Pong!")
+      message.channel.send("Pong! " + Math.floor(client.ping) + "ms.")
     },
   },
 }
