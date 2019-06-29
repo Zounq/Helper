@@ -29,10 +29,10 @@ client.on('ready', function (evt, callback) {
  /* Set Bot Status */
  client.user.setPresence({
    game: {
-     type: 0, // Set to 'playing'
-     name: `+help | ConnectBot Beta | ${client.guilds.size} servers!` // Set what the bot is 'playing'
+     type: 1, // Set to 'playing'
+     name: `ChannelBot Support Server | h!help` // Set what the bot is 'playing'
    },
-   status: "invisible" // Set bot to online status
+   status: "online" // Set bot to online status
  });
 });
 
