@@ -7,9 +7,13 @@ This bot is made and managed by Codingpro#0001 and Boss#0006.
 **More Information** 
 
 • Bot Invite - https://bit.ly/invitecb
+
 • Website - https://channelbot.glitch.me/
+
 • Documentation - https://channelbot.gitbook.io/docs/
+
 • Donating/Purchasing Premium - https://www.patreon.com/ChannelBot
+
 • Support Server Invite - https://discordapp.com/invite/vB47a5r
 
 
