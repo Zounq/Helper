@@ -44,8 +44,8 @@ client.on('ready', function (evt, callback) {
  /* Set Bot Status */
  client.user.setPresence({
    game: {
-     type: 0, // Set to 'playing'
-     name: `Mason is a chicken!` // Set what the bot is 'playing'
+     type: 3, // Set to 'watching'
+     name: `ChannelBot Support! | h!help` // Set what the bot is 'playing'
    },
    status: "online" // Set bot to online status
  });
