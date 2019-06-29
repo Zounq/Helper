@@ -69,7 +69,12 @@ dbl.webhook.on('vote', vote => {
 
 /* All The Bot's Commands */
 var commands = {
-
+  ping: {
+    aliases: [],
+    run: (message) => {
+      message.channel.send("Pong!")
+    },
+  },
 }
 const cooldown = new Set();
 client.on("message", async (message) => {
