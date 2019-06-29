@@ -1,0 +1,17 @@
+{
+  "name": "helper",
+  "version": "1.0.0",
+  "description": "does stuff for channelbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "canvas": "^2.6.0",
+    "express": "^4.16.4",
+    "dblapi.js": "^2.3.0",
+    "dbl-api": "^1.2.1"
+  },
+  "license": "ISC"
+}
