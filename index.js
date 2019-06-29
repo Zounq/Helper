@@ -1,6 +1,6 @@
 /*
 * ChannelBot Helper
-* Copyright 2019 @Codingpro#0001 & @Boss#0001
+* Copyright 2019 @Codingpro#0001 & @Boss#0006
 */
 
 /* Discord.js */
