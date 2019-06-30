@@ -17,6 +17,7 @@ const config = require("./config.json");
 client.config = config;
 
 var port = 3000
+var server = require('http').createServer(app);
 app.get("/", (request, response) => {
   response.sendStatus(200);
 });
