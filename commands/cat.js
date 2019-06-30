@@ -7,7 +7,7 @@ exports.run = async (client, message) => {
     const CatEm = new Discord.RichEmbed()
             .setImage(res.body.file)
             .setColor("#E6E6FF")
-            .setAuthor('Meow! Kitty incoming!) 
+            .setAuthor('Meow! Kitty incoming!') 
   
     return message.channel.send(CatEm) 
   });
