@@ -101,7 +101,7 @@ const dbl = new DBL(process.env.DBL, { webhookServer: listener, webhookAuth: pro
     g.channels.get("594563989988573192").send(embed)
   })
 
-const cooldown = new Set();
+const cooldown = new Set()
 client.on("message", async (message) => {
    if (message.author.bot) return;
    if (message.content.indexOf(client.config.prefix) !== 0) return;
