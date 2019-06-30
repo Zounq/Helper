@@ -1,9 +1,8 @@
 const Discord = require('discord.js');
 const client = require('../index.js');
-const config = client.config
 exports.run = async (client, message, args) => {
 
-if(message.author.id !== config.owners) return;
+if(message.author.id !== client.config.owners) return;
 
     let evaled;
     try {
