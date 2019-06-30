@@ -1,5 +1,5 @@
 const Discord = require('discord.js'); 
-const get = require('superagent'); 
+const get = require('superagent');
 
 exports.run = async (client, message) => { 
   await get('http://aws.random.cat/meow').then(res => { 
