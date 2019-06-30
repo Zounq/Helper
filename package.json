@@ -12,7 +12,8 @@
     "express": "^4.16.4",
     "dblapi.js": "^2.3.0",
     "dbl-api": "^1.2.1",
-    "node-cmd": "^3.0.0"
+    "node-cmd": "^3.0.0",
+    "enmap": "^4.8.6"
   },
   "license": "ISC"
 }
