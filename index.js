@@ -84,9 +84,7 @@ const dbl = new DBL(process.env.DBL, { webhookServer: listener, webhookAuth: pro
   });
   dbl.webhook.on('vote', vote => {
     console.log(vote)
-    }
-    // Do what you need to do
-  });
+  })
 
 const cooldown = new Set();
 client.on("message", async (message) => {
