@@ -34,7 +34,9 @@ app.post('/git', (req, res) => {
 
   return res.sendStatus(200); // Send back OK status
 });
-app.listen(port, () => console.log("Server Online!"))
+const listener = server.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
 
 
 /* Connect discord.js to bot user */
@@ -76,7 +78,7 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 const DBL = require('dblapi.js');
-  const dbl = new DBL(process.env.DBL, { webhookPort: 7654, webhookAuth: process.env.dblpass });
+  const dbl = new DBL(process.env.DBL, { webhookPort: listener, webhookAuth: process.env.dblpass });
   dbl.webhook.on('ready', hook => {
     console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
   });
