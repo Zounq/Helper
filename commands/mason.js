@@ -11,5 +11,6 @@ exports.run = async (client, message, args) => {
   .setTitle('Mason is some yummy fried chicken!! 😋😋')
   
     return message.channel.send(mason)
+}  
   
   
