@@ -92,5 +92,5 @@ client.on("message", async (message) => {
    const command = args.shift().toLowerCase();
    const cmd = client.commands.get(command);
    if (!cmd) return;
-   cmd.run(client, message, args);
+   cmd.run(client, message);
 })
