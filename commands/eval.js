@@ -2,8 +2,7 @@ const Discord = require('discord.js');
 const client = require('../index.js');
 exports.run = async (client, message, args) => {
 
-if(client.config.owners.includes(message.author.id)) return;
-
+if(!client.config.owners.includes(message.author.id)) return;
     let evaled;
     try {
         evaled = await eval(args.join(' '));
