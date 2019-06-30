@@ -6,7 +6,7 @@ exports.run = async (client, message) => {
   const DogEm = new Discord.RichEmbed()
   .setImage(res.body.url) 
   .setColor('RANDOM') 
-  .setAuthor('Woof Woof, Doggo incoming!) 
+  .setAuthor('Woof Woof, Doggo incoming!') 
   
     return message.channel.send(DogEm) 
   });
