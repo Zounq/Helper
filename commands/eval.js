@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = require('../index.js');
-const config = require('../config.json); 
+const config = client.config
 exports.run = async (client, message) => {
 
 if(message.author.id !== config.owners) return;
