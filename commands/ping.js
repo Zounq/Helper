@@ -2,7 +2,7 @@ const discord = require('discord.js');
 const config = require('../config.json'); 
 const client = require('../index.js'); 
 
-run: async (message) => { 
+exports.run = async (client, message) => { 
 
     let time = Date.now();
     let msg = await message.channel.send('<a:loadingg:594656471934042167> Ping!');
