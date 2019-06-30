@@ -7,10 +7,14 @@
 const Discord = require('discord.js')
 let client = new Discord.Client()
 const cmd = require("node-cmd");
+const Enmap = require("enmap");
+const fs = require("fs");
 
 /* Setup Express */
 var express = require('express');
 var app = express();
+const config = require("./config.json");
+client.config = config;
 
 var port = 3000
 app.get("/", (request, response) => {
@@ -58,6 +62,19 @@ var functions = {
   }
 }
 
+client.commands = new Enmap();
+
+fs.readdir("./commands/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/${file}`);
+    let commandName = file.split(".")[0];
+    console.log(`Attempting to load command ${commandName}`);
+    client.commands.set(commandName, props);
+  });
+});
+
 const DBL = require('dblapi.js');
 const dbl = new DBL(process.env.DBL, { webhookPort: 7654, webhookAuth: process.env.dblpass});
 dbl.webhook.on('ready', hook => {
@@ -69,13 +86,11 @@ dbl.webhook.on('vote', vote => {
 
 const cooldown = new Set();
 client.on("message", async (message) => {
- if(message.author.bot) return;
- if(message.content.toLowerCase().startsWith("h!")) {
-   for(let i in commands) {
-     if(message.content.toLowerCase().split(" ")[0].slice(2) === i || commands[i].aliases.includes(message.content.toLowerCase().split(" ")[0].slice(2))) {
-       commands[i].run(message)
-       console.log(`${message.author.tag} used the ${commands[i].usage} command in ${message.guild.name}`)
-     }
-   }
- }
+   if (message.author.bot) return;
+   if (message.content.indexOf(client.config.prefix) !== 0) return;
+   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+   const command = args.shift().toLowerCase();
+   const cmd = client.commands.get(command);
+   if (!cmd) return;
+   cmd.run(client, message, args);
 })
