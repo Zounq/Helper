@@ -23,10 +23,8 @@ var server = require('http').createServer(app);
 const listener = server.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
-http.get("/", (request, response) => {
-  response.sendStatus(200);
-});
-http.post('/git', (req, res) => {
+http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+app.post('/git', (req, res) => {
   if (req.headers['x-github-event'] == "push") {
   cmd.run('chmod 777 git.sh');
   cmd.get('./git.sh', (err, data) => {
