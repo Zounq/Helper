@@ -12,16 +12,21 @@ const fs = require("fs");
 
 /* Setup Express */
 var express = require('express');
+const http = require('http');
 var app = express();
+var server = require('http').createServer(app);
 const config = require("./config.json");
 client.config = config;
 
 var port = 3000
 var server = require('http').createServer(app);
-app.get("/", (request, response) => {
+const listener = server.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
+http.get("/", (request, response) => {
   response.sendStatus(200);
 });
-app.post('/git', (req, res) => {
+http.post('/git', (req, res) => {
   if (req.headers['x-github-event'] == "push") {
   cmd.run('chmod 777 git.sh');
   cmd.get('./git.sh', (err, data) => {
@@ -35,10 +40,6 @@ app.post('/git', (req, res) => {
 
   return res.sendStatus(200); // Send back OK status
 });
-const listener = app.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
-
 
 /* Connect discord.js to bot user */
 client.login(process.env.TOKEN).catch(console.error);
@@ -77,9 +78,9 @@ fs.readdir("./commands/", (err, files) => {
     client.commands.set(commandName, props);
   });
 });
-/*
+
 const DBL = require('dblapi.js');
-  const dbl = new DBL(process.env.DBL, { webhookPort: listener, webhookAuth: process.env.dblpass });
+const dbl = new DBL(process.env.DBL, { webhookServer: listener, webhookAuth: process.env.dblpass});
   dbl.webhook.on('ready', hook => {
     console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
   });
@@ -91,8 +92,8 @@ const DBL = require('dblapi.js');
         client.channels.get('594563989988573192').send(`${vote.user} just upvoted <@${vote.bot}>!`)
       }
     }
-    // Do what you need to do 
-  });*/
+    // Do what you need to do
+  });
 
 const cooldown = new Set();
 client.on("message", async (message) => {
