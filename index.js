@@ -76,13 +76,20 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 const DBL = require('dblapi.js');
-const dbl = new DBL(process.env.DBL, { webhookPort: 7654, webhookAuth: process.env.dblpass});
-dbl.webhook.on('ready', hook => {
-  console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
-});
-dbl.webhook.on('vote', vote => {
-  console.log(`User with ID ${vote.user} just voted!`);
-});
+  const dbl = new DBL(process.env.DBL, { webhookPort: 7654, webhookAuth: process.env.dblpass });
+  dbl.webhook.on('ready', hook => {
+    console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
+  });
+  dbl.webhook.on('vote', vote => {
+    if (vote.type == "test") {
+      console.log("Test successful!")
+    } else {
+      if (vote.type == "upvote") {
+        client.channels.get('594563989988573192').send(`${vote.user} just upvoted <@${vote.bot}>!`)
+      }
+    }
+    // Do what you need to do 
+  });
 
 const cooldown = new Set();
 client.on("message", async (message) => {
