@@ -83,12 +83,7 @@ const dbl = new DBL(process.env.DBL, { webhookServer: listener, webhookAuth: pro
     console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
   });
   dbl.webhook.on('vote', vote => {
-    if (vote.type == "test") {
-      console.log("Test successful!")
-    } else {
-      if (vote.type == "upvote") {
-        client.channels.get('594563989988573192').send(`${vote.user} just upvoted <@${vote.bot}>!`)
-      }
+    console.log(vote)
     }
     // Do what you need to do
   });
