@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = require('../index.js');
 const config = client.config
-exports.run = async (client, message) => {
+exports.run = async (client, message, args) => {
 
 if(message.author.id !== config.owners) return;
 
@@ -13,7 +13,7 @@ if(message.author.id !== config.owners) return;
         embed.setTitle('JavaScript Eval');
         embed.setColor('RED');
         embed.setDescription(`[Error]\n \`\`\`js\n${err}\`\`\``);
-        embed.setFooter(Client.user.username, Client.user.avatarURL);
+        embed.setFooter(client.user.username, client.user.avatarURL);
         embed.setTimestamp();
         return message.channel.send(embed);
     }
