@@ -23,7 +23,9 @@ var server = require('http').createServer(app);
 const listener = server.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
-http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
 app.post('/git', (req, res) => {
   if (req.headers['x-github-event'] == "push") {
   cmd.run('chmod 777 git.sh');
@@ -83,7 +85,20 @@ const dbl = new DBL(process.env.DBL, { webhookServer: listener, webhookAuth: pro
     console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
   });
   dbl.webhook.on('vote', vote => {
-    console.log(vote)
+    let g = client.guilds.get("568957622808739841")
+    let embed = new Discord.RichEmbed()
+    embed.setAuthor("Someone Upvoted!", client.user.avatarURL)
+    if (g.members.get(vote.user)) {
+      let user = g.members.get(vote.user)
+      user.addRole("594559964115238913")
+      embed.setDescription(`User: ${user.tag} \`${vote.user}\` just upvoted!\nThey recived the Upvoted role!\n\nUpvote and get announced! Click [here](https://discordbots.org/bot/443545183997657120/vote)!`)
+    } else {
+      embed.setDescription(`User: <@${vote.user}> \`${vote.user}\` just upvoted!\n\nUpvote and get announced! Click [here](https://discordbots.org/bot/443545183997657120/vote)!`)
+    }
+    embed.setColor(0x62c5ec)
+    embed.setTimestamp()
+    embed.setFooter("Thanks for supporting ChannelBot!")
+    g.channels.get("594563989988573192").send(embed)
   })
 
 const cooldown = new Set();
